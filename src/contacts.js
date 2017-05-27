@@ -2,18 +2,18 @@
 import React from 'react';
 import { Filter, TextInput, ReferenceInput, SelectInput, List, Datagrid, EmailField, TextField, EditButton } from 'admin-on-rest';
 
-// const UserFilter = (props) => (
-//     <Filter {...props}>
-//         <TextInput label="Search" source="q" alwaysOn />
-//         <ReferenceInput label="Contact" source="username" reference="contacts" allowEmpty>
-//             <SelectInput optionText="name" />
-//         </ReferenceInput>
-//     </Filter>
-// );
+const ContactFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn />
+        <ReferenceInput label="Contact" source="username" reference="contacts" allowEmpty>
+            <SelectInput optionText="name" />
+        </ReferenceInput>
+    </Filter>
+);
 
 export const ContactList = (props) => (
-    <List title="All users" {...props}>
-        <Datagrid>
+    <List title="All users" {...props} filters={<ContactFilter />}>
+        <Datagrid bodyOptions={{ stripedRows: true, showRowHover: true }}>
             <TextField source="id" />
             <TextField source="name" />
             <TextField source="username" />

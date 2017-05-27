@@ -2,6 +2,10 @@
 import React from 'react';
 // import { fetchUtils, simpleRestClient, Admin, Resource } from 'admin-on-rest';
 import { fetchUtils, Admin, Resource } from 'admin-on-rest';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+
 import restClient from './IMYD-REST-Client';
 
 // import { PostList, PostEdit, PostCreate } from './posts';
@@ -10,8 +14,11 @@ import { ConvoList } from './convos';
 
 import ContactIcon from 'material-ui/svg-icons/social/group';
 import ConvoIcon from 'material-ui/svg-icons/social/people-outline';
+import logoImage from './img/logo-horizontal.gif';
 
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
+
+import { IMYDTheme } from './themes/IMYD-theme';
 
 import authClient from './authClient'
 
@@ -31,11 +38,15 @@ import authClient from './authClient'
 
 // <Admin authClient={authClient} dashboard={Dashboard} restClient={simpleRestClient('https://s-qa.imyourdoc.com')}>
 
+// const AdminTitle = ({ record }) => {
+//     return <img style={{position: 'relative', top: '-9px', width: 190, height: 80}} src={logoImage}/>;
+// };
+
 const App = () => (
-    <Admin authClient={authClient} dashboard={Dashboard} restClient={restClient}>
-        {/*<Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} remove={Delete} icon={PostIcon}/>*/}
+    <Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title="IM Your Doc Facility Admin Panel" theme={getMuiTheme(IMYDTheme)} >
+    {/*<Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title={<AdminTitle />} theme={getMuiTheme(IMYDTheme)} >*/}
         <Resource name="contacts" list={ContactList} icon={ContactIcon}/>
-        <Resource name="/communication/threads" options={{label: "Conversations"}} list={ConvoList} icon={ConvoIcon}/>
+        <Resource name="communication/threads" options={{label: "Conversations"}} list={ConvoList} icon={ConvoIcon}/>
     </Admin>
 );
 

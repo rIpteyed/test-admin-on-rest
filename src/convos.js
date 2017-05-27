@@ -14,7 +14,7 @@ import { Filter, TextInput, ReferenceInput, SelectInput, List, Datagrid, EmailFi
 
 export const ConvoList = (props) => (
     <List title="My conversations" {...props}>
-        <Datagrid>
+        <Datagrid bodyOptions={{ stripedRows: true, showRowHover: true }}>
             <TextField source="id" />
             <FunctionField label="Conversation Members" source="name" render={record => `${_.pluck(record.users, 'username').join(',')}`} />
             <TextField source="unreadCount" />
