@@ -9,10 +9,12 @@ import AppBar from 'material-ui/AppBar';
 import restClient from './IMYD-REST-Client';
 
 // import { PostList, PostEdit, PostCreate } from './posts';
-import { ContactList } from './contacts';
+import { HPList } from './healthcare-professionals';
+import { PatientList } from './patients';
 import { ConvoList } from './convos';
 
-import ContactIcon from 'material-ui/svg-icons/social/group';
+import HPIcon from 'material-ui/svg-icons/social/group';
+import PatientIcon from 'material-ui/svg-icons/social/group';
 import ConvoIcon from 'material-ui/svg-icons/social/people-outline';
 import logoImage from './img/logo-horizontal.gif';
 
@@ -20,7 +22,7 @@ import Dashboard from './Dashboard';
 
 import { IMYDTheme } from './themes/IMYD-theme';
 
-import authClient from './authClient'
+import authClient from './authClient';
 
 // const httpClient = (url, options = {}) => {
 //     if (!options.headers) {
@@ -45,7 +47,8 @@ import authClient from './authClient'
 const App = () => (
     <Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title="IM Your Doc Facility Admin Panel" theme={getMuiTheme(IMYDTheme)} >
     {/*<Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title={<AdminTitle />} theme={getMuiTheme(IMYDTheme)} >*/}
-        <Resource name="contacts" list={ContactList} icon={ContactIcon}/>
+        <Resource name="healthcareprofessionals" options={{label: "HealthCare Professionals"}} list={HPList} icon={HPIcon}/>
+        <Resource name="patients" options={{label: "Patients"}} list={PatientList} icon={PatientIcon}/>
         <Resource name="communication/threads" options={{label: "Conversations"}} list={ConvoList} icon={ConvoIcon}/>
     </Admin>
 );
