@@ -15,13 +15,9 @@
 ```bash
 npm install
 ```
-### Build app (from IMYourDoc_WebApp directory)
+### Build and run app (from IMYD_FacilityAdmin directory)
 ```bash
-npm run dev
-
-# Note you can also use:
-# npm run qa
-# npm run prod
+yarnpkg start
 ```
 
 Committing your changes
@@ -32,7 +28,7 @@ The steps are:
 
 1. `git add` the changed files that should be included in the commit.
 
-2. `git commit` Enter a brief commit message that explains your changes. You can mark the related Pivotal story as "Finished" by including the text
+2. `git commit -am` Enter a brief commit message that explains your changes. You can mark the related Pivotal story as "Finished" by including the text
 ```
 [Finishes #PIVOTAL\_STORY\_ID]
 ```
