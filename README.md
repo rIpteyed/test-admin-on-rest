@@ -2,13 +2,13 @@
 
 [This project was bootstrapped with the Create React App](docs/create_react_app.md)
 
-<b>Getting Started with IMYourDoc Web App</b>
+<b>Getting Started with IMYourDoc Facility Admin Portal</b>
 
 <h2>Requirments </h2>
 <ul>
-	<li>Node v6.0.0 or later</li>
-	<li>SSL certs (self signed-OK for development, see https://nodejs.org/api/tls.htmlhttps://nodejs.org/api/tls.html)</li>
-	<li>For cookies to work, either deploy on an imyourdoc.com server or create a `me.imyourdoc.com 127.0.0.1` host file entry for your local machine so that you can access your local machine at that imyourdoc.com URL</li>
+	<li>Node v7.10.0 or later</li>
+	<!--<li>SSL certs (self signed-OK for development, see https://nodejs.org/api/tls.htmlhttps://nodejs.org/api/tls.html)</li>
+	<li>For cookies to work, either deploy on an imyourdoc.com server or create a `me.imyourdoc.com 127.0.0.1` host file entry for your local machine so that you can access your local machine at that imyourdoc.com URL</li>-->
 </ul>
 
 ### Install node modules at root of app
