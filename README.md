@@ -2,6 +2,8 @@
 
 [This project was bootstrapped with the Create React App](docs/create_react_app.md)
 
+[And is based on Admin on Rest](https://github.com/marmelab/admin-on-rest)
+
 <b>Getting Started with IMYourDoc Facility Admin Portal</b>
 
 <h2>Requirments </h2>
