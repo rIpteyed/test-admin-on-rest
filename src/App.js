@@ -1,6 +1,5 @@
 // in src/App.js
 import React from 'react';
-// import { fetchUtils, simpleRestClient, Admin, Resource } from 'admin-on-rest';
 import { fetchUtils, Admin, Resource } from 'admin-on-rest';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -9,8 +8,8 @@ import AppBar from 'material-ui/AppBar';
 import restClient from './IMYD-REST-Client';
 
 // import { PostList, PostEdit, PostCreate } from './posts';
-import { HPList } from './healthcare-professionals';
-import { PatientList } from './patients';
+import { HPList, HPEdit, HPCreate } from './healthcare-professionals';
+import { PatientList, PatientEdit, PatientCreate } from './patients';
 import { ConvoList } from './convos';
 
 import HPIcon from 'material-ui/svg-icons/social/group';
@@ -47,8 +46,8 @@ import authClient from './authClient';
 const App = () => (
     <Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title="IM Your Doc Facility Admin Panel" theme={getMuiTheme(IMYDTheme)} >
     {/*<Admin authClient={authClient} dashboard={Dashboard} restClient={restClient} title={<AdminTitle />} theme={getMuiTheme(IMYDTheme)} >*/}
-        <Resource name="healthcareprofessionals" options={{label: "HealthCare Professionals"}} list={HPList} icon={HPIcon}/>
-        <Resource name="patients" options={{label: "Patients"}} list={PatientList} icon={PatientIcon}/>
+        <Resource name="healthcareprofessionals" options={{label: "HealthCare Professionals"}} list={HPList} icon={HPIcon} create={HPCreate} edit={HPEdit}/>
+        <Resource name="patients" options={{label: "Patients"}} list={PatientList} icon={PatientIcon} create={HPCreate} edit={HPEdit}/>
         <Resource name="communication/threads" options={{label: "Conversations"}} list={ConvoList} icon={ConvoIcon}/>
     </Admin>
 );

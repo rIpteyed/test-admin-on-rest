@@ -41,8 +41,7 @@ const convertRESTRequestToHTTP = (type, resource, params) => {
         page: page - 1,
         size: perPage,
         sort: field + ',' + order.toLowerCase(),
-        filter: filterField+ ',' + filterValue,
-        uid: 7629
+        filter: filterField+ ',' + filterValue
       };
 
       console.log('jr', query);
@@ -86,6 +85,8 @@ const convertRESTRequestToHTTP = (type, resource, params) => {
       url = `${API_URL}/${resource}`;
       options.method = 'POST';
       options.body = JSON.stringify(params.data);
+
+      console.log('Create Post', url, options);
       break;
     case DELETE:
       url = `${API_URL}/${resource}/${params.id}`;
@@ -117,10 +118,10 @@ const convertHTTPResponseToREST = (response, type, resource, params) => {
     data = json.content;
   }
 
-  let i = 0;
+  let i = 0, totalElements = json.totalElements;
   data.forEach((item) => {
     if (_.isUndefined(item.id)) {
-      item['id'] = ++i; // temporary - need indexes on these items
+      item['id'] = item.uid;
     }
   });
 
@@ -129,11 +130,14 @@ const convertHTTPResponseToREST = (response, type, resource, params) => {
       console.log('data', data)
       return {
         data: data, //json.map(x => x),
-        total: data.length //parseInt(headers.get('content-range').split('/').pop(), 10),
+        total: totalElements //parseInt(headers.get('content-range').split('/').pop(), 10),
       };
     case CREATE:
+      console.log('create', params, json);
+
       return {data: {...params.data, id: json.id}};
     default:
+      console.log('default', params, json);
       return {data: json};
   }
 };
@@ -154,17 +158,20 @@ export default (type, resource, params) => {
   // Needs to be
   // https://s-qa.imyourdoc.com/imyd-admin-api/api/v1/healthcareprofessionals?page=0&size=10&uid=7976&filter=lastName,long&filter=firstName,juan&sort=lastName,asc
 
-  console.log('main', url, options);
-
   if (!options.headers) {
     options.headers = new Headers({Accept: 'application/json'});
   }
   const token = localStorage.getItem('token');
-  // options.headers.set('Authorization', `Bearer ${token}`);
   options.headers.set('x-auth-token', token);
+
+  // options.headers.set('Authorization', `Bearer ${token}`);
   // options.headers.set('Origin', 'http://localhost:3000');
-  options.headers.set('X-Total-Count', '30');
-  options.headers.set('Access-Control-Expose-Headers', 'X-Total-Count');
+  // options.headers.set('X-Total-Count', '30');
+  // options.headers.set('Access-Control-Expose-Headers', 'X-Total-Count');
+
+  for (var value of options.headers.values()) {
+    console.log(value);
+  }
 
   return fetchJson(url, options)
     .then(response => {
@@ -173,6 +180,9 @@ export default (type, resource, params) => {
 
       const resToRest = convertHTTPResponseToREST(response, type, resource, params);
       return resToRest;
+    })
+    .catch( (error) => {
+      console.log('Fetch Catch: ', error);
     });
 };
 
